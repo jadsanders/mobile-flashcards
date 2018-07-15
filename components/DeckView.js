@@ -5,30 +5,55 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native'
-import { greyLight, primary, primaryMedium, secondary } from '../utils/colors'
+import AddCardView from './AddCardView'
+import { greyLight, primary, primaryMedium, secondary, white, greyDark, whiteDark } from '../utils/colors'
+
+import { connect } from 'react-redux'
+
+import { startQuiz } from '../actions'
 
 class DeckView extends Component {
 
+  startQuiz() {
+    this.props.navigation.navigate('QuizView')
+    this.props.startQuiz()
+  }
+
   render() {
-    const { title, questions } = this.props.navigation.state.params
+    const { title, questions } = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.questions}>
-          {questions}
-          {questions === 1
+          {questions.length}
+          {questions.length === 1
             ? ' question'
             : ' questions'
           }
         </Text>
 
         <View style={styles.btnContainer}>
-          <TouchableOpacity style={[styles.button, styles.addBtn]}>
-            <Text style={[styles.buttonText, {color: secondary}]}>Add Card</Text>
+          <TouchableOpacity
+            style={[styles.button, styles.addBtn]}
+            onPress={() => this.props.navigation.navigate('AddCardView')}
+          >
+            <Text style={[styles.buttonText, {color: secondary}]} >Add Card</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.button, styles.startBtn]}>
-            <Text style={[styles.buttonText, {color: '#fff'}]}>Start Quiz</Text>
+          <TouchableOpacity
+            style={
+              questions.length === 0
+              ? [styles.button, styles.startBtnDisabled]
+              : [styles.button, styles.startBtn]
+            }
+            onPress={() => this.startQuiz(title)}
+            disabled={questions.length === 0 ? true : false}
+          >
+
+            {questions.length === 0
+              ? <Text style={[styles.buttonText, {color: 'transparent'}]}>Start Quiz</Text>
+              : <Text style={[styles.buttonText, {color: '#fff'}]}>Start Quiz</Text>
+            }
           </TouchableOpacity>
         </View>
       </View>
@@ -71,9 +96,26 @@ const styles = StyleSheet.create({
     borderColor: secondary,
     backgroundColor: secondary,
   },
+  startBtnDisabled: {
+    borderColor: 'transparent',
+    backgroundColor: 'transparent',
+  },
   btnContainer: {
     marginTop: 60,
   }
 })
 
-export default DeckView
+function mapStateToProps (state) {
+  return {
+    questions: state.currentQuestions,
+    title: state.currentDeck
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    startQuiz: () => dispatch(startQuiz()),
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(DeckView)

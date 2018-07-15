@@ -6,17 +6,24 @@ import {
   StatusBar,
   Platform
 } from 'react-native';
-import { primary, white, primaryMedium, greyDark, greyMedium } from './utils/colors'
+import { primary, white, primaryMedium, greyDark, greyMedium, secondary } from './utils/colors'
 import { Ionicons } from '@expo/vector-icons'
+
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
+import thunk from 'redux-thunk';
 
 import DeckListView from './components/DeckListView';
 import DeckView from './components/DeckView';
 import NewDeckView from './components/NewDeckView';
-
+import AddCardView from './components/AddCardView';
+import QuizView from './components/QuizView';
 import CustomStatusBar from './components/CustomStatusBar';
 
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 
+import { composeWithDevTools } from 'remote-redux-devtools';
 
 
 const Tabs = createBottomTabNavigator({
@@ -30,14 +37,14 @@ const Tabs = createBottomTabNavigator({
   NewDeckView: {
     screen: NewDeckView,
     navigationOptions: {
-      tabBarLabel: 'New',
+      tabBarLabel: 'New Deck',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-add-circle' size={30} color={tintColor} />
     },
   },
 }, {
   tabBarOptions: {
-    activeTintColor: white,
-    inactiveTintColor: greyMedium,
+    activeTintColor: secondary,
+    inactiveTintColor: white,
     style: {
       height: 56,
       backgroundColor: greyDark,
@@ -66,20 +73,51 @@ const MainNavigator = createStackNavigator({
       headerTintColor: white,
       headerStyle: {
         backgroundColor: greyDark,
-      }
+      },
+      headerTitle: 'Deck',
     }
-  }
+  },
+  AddCardView: {
+    screen: AddCardView,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: greyDark,
+      },
+      headerTitle: 'Add Card'
+    }
+  },
+  QuizView: {
+    screen: QuizView,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: greyDark,
+      },
+      headerTitle: 'Quiz'
+    }
+  },
 })
 
-export default class App extends Component {
+
+const store = createStore(reducer, composeWithDevTools(
+  applyMiddleware(thunk)
+));
+
+//const store = createStore(reducer);
+
+class App extends Component {
+
   render() {
     return (
-      <View style={{flex: 1}}>
-        <CustomStatusBar backgroundColor={greyDark} barStyle='light-content' />
-        <View style={styles.container}>
-          <MainNavigator />
+      <Provider store={store}>
+        <View style={{flex: 1}}>
+          <CustomStatusBar backgroundColor={greyDark} barStyle='light-content' />
+          <View style={styles.container}>
+            <MainNavigator />
+          </View>
         </View>
-      </View>
+      </Provider>
     );
   }
 }
@@ -89,3 +127,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+function mapStateToProps(state) {
+  return {
+    currentDeck: state.currentDeck
+  }
+}
+
+export default App

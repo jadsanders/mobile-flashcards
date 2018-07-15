@@ -1,8 +1,9 @@
-const data =
+export const dummyData =
 
 {
   React: {
     title: 'React',
+    createdAt: 1531499743290,
     questions: [
       {
         question: 'What is React?',
@@ -11,11 +12,16 @@ const data =
       {
         question: 'Where do you make Ajax requests in React?',
         answer: 'The componentDidMount lifecycle event'
+      },
+      {
+        question: 'What is Redux?',
+        answer: 'A library that manages application state'
       }
     ]
   },
   JavaScript: {
     title: 'JavaScript',
+    createdAt: 1531498643290,
     questions: [
       {
         question: 'What is a closure?',
@@ -25,6 +31,7 @@ const data =
   },
   Rails: {
     title: 'Rails',
+    createdAt: 1531478738290,
     questions: [
       {
         question: 'What is ERB?',
@@ -32,9 +39,4 @@ const data =
       }
     ]
   }
-}
-
-
-export default function getData () {
-  return data
 }
