@@ -25,6 +25,8 @@ import { createBottomTabNavigator, createStackNavigator } from 'react-navigation
 
 import { composeWithDevTools } from 'remote-redux-devtools';
 
+import { setLocalNotification } from './utils/helpers'
+
 
 const Tabs = createBottomTabNavigator({
   DeckListView: {
@@ -107,6 +109,9 @@ const store = createStore(reducer, composeWithDevTools(
 //const store = createStore(reducer);
 
 class App extends Component {
+  componentDidMount () {
+    setLocalNotification()
+  }
 
   render() {
     return (

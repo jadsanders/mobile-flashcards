@@ -9,6 +9,8 @@ import { connect } from 'react-redux'
 import { secondary, white, green, red, greyLight } from '../utils/colors'
 import { incrementQuestion, startQuiz } from '../actions'
 
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+
 class QuizView extends Component {
 
   state = {
@@ -45,6 +47,8 @@ class QuizView extends Component {
       return true
     } else {
       return false
+      clearLocalNotification()
+      .then(setLocalNotification)
     }
   }
 
