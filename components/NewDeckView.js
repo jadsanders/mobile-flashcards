@@ -9,7 +9,7 @@ import {
 
 import { connect } from 'react-redux'
 
-import { secondary } from '../utils/colors'
+import { moonstone } from '../utils/colors'
 
 import { addDeckTitle, selectDeck } from '../actions'
 
@@ -25,6 +25,7 @@ class NewDeckView extends Component {
     this.props.navigation.navigate('DeckView')
     this.setState({title: ''})
     this.props.selectDeck(deck)
+    this.setState({ title: '', questions: [], createdAt: Date.now()})
   }
 
   render() {
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 50,
+    backgroundColor: '#fff'
   },
   title: {
     fontSize: 30,
@@ -79,13 +81,13 @@ const styles = StyleSheet.create({
     margin: 7,
   },
   saveBtn: {
-    borderColor: secondary,
-    backgroundColor: secondary,
+    borderColor: moonstone,
+    backgroundColor: moonstone,
   },
   input: {
     width: 350,
-    borderWidth: 1,
-    borderColor: secondary,
+    borderWidth: 2,
+    borderColor: moonstone,
     borderRadius: 7,
     padding: 15,
     fontSize: 24,

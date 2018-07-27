@@ -6,7 +6,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import AddCardView from './AddCardView'
-import { greyLight, primary, primaryMedium, secondary, white, greyDark, whiteDark } from '../utils/colors'
+import { greyLight, primary, primaryMedium, secondary, white, greyDark, whiteDark, moonstone  } from '../utils/colors'
 
 import { connect } from 'react-redux'
 
@@ -37,7 +37,7 @@ class DeckView extends Component {
             style={[styles.button, styles.addBtn]}
             onPress={() => this.props.navigation.navigate('AddCardView')}
           >
-            <Text style={[styles.buttonText, {color: secondary}]} >Add Card</Text>
+            <Text style={[styles.buttonText, {color: moonstone}]} >Add Card</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1
+    flex: 1,
+    backgroundColor: '#fff'
   },
   title: {
     fontSize: 40,
@@ -85,16 +86,16 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingLeft: 80,
     paddingRight: 80,
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 7,
     margin: 7,
   },
   addBtn: {
-    borderColor: secondary
+    borderColor: moonstone
   },
   startBtn: {
-    borderColor: secondary,
-    backgroundColor: secondary,
+    borderColor: moonstone,
+    backgroundColor: moonstone,
   },
   startBtnDisabled: {
     borderColor: 'transparent',

@@ -6,7 +6,7 @@ import {
   StatusBar,
   Platform
 } from 'react-native';
-import { primary, white, primaryMedium, greyDark, greyMedium, secondary } from './utils/colors'
+import { primary, white, primaryMedium, greyDark, greyMedium, secondary, aero, bluePurple } from './utils/colors'
 import { Ionicons } from '@expo/vector-icons'
 
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -35,26 +35,28 @@ const Tabs = createBottomTabNavigator({
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-albums' size={30} color={tintColor} />
     },
+
   },
   NewDeckView: {
     screen: NewDeckView,
     navigationOptions: {
-      tabBarLabel: 'New Deck',
+      tabBarLabel: 'Add Deck',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-add-circle' size={30} color={tintColor} />
     },
   },
 }, {
   tabBarOptions: {
-    activeTintColor: secondary,
-    inactiveTintColor: white,
+    activeTintColor: white,
+    inactiveTintColor: bluePurple,
     style: {
       height: 56,
-      backgroundColor: greyDark,
+      backgroundColor: aero,
       padding: 3
     },
     labelStyle: {
       fontSize: 12
-    }
+    },
+    showLabel: true,
   }
 })
 
@@ -64,7 +66,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: greyDark,
+        backgroundColor: aero,
       },
       headerTitle: 'Home'
     }
@@ -74,7 +76,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: greyDark,
+        backgroundColor: aero,
       },
       headerTitle: 'Deck',
     }
@@ -84,7 +86,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: greyDark,
+        backgroundColor: aero,
       },
       headerTitle: 'Add Card'
     }
@@ -94,7 +96,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: greyDark,
+        backgroundColor: aero,
       },
       headerTitle: 'Quiz'
     }
@@ -117,7 +119,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <CustomStatusBar backgroundColor={greyDark} barStyle='light-content' />
+          <CustomStatusBar backgroundColor={aero} barStyle='light-content' />
           <View style={styles.container}>
             <MainNavigator />
           </View>

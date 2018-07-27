@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import { secondary } from '../utils/colors'
+import { moonstone, smoke } from '../utils/colors'
 import { addCard } from '../actions'
 
 class AddCardView extends Component {
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    backgroundColor: '#fff'
   },
   title: {
     fontSize: 20,
@@ -94,13 +95,13 @@ const styles = StyleSheet.create({
     margin: 7,
   },
   saveBtn: {
-    borderColor: secondary,
-    backgroundColor: secondary,
+    borderColor: moonstone,
+    backgroundColor: moonstone,
   },
   input: {
     width: 350,
-    borderWidth: 1,
-    borderColor: secondary,
+    borderWidth: 2,
+    borderColor: moonstone,
     borderRadius: 7,
     padding: 15,
     fontSize: 24,

@@ -6,7 +6,7 @@ import {
   StyleSheet
 } from 'react-native'
 import { connect } from 'react-redux'
-import { secondary, white, green, red, greyLight } from '../utils/colors'
+import { white, green, red, greyLight, aero, moonstone } from '../utils/colors'
 import { incrementQuestion, startQuiz } from '../actions'
 
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
@@ -177,6 +177,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+    backgroundColor: '#fff'
   },
   counterContainer: {
     display: 'flex',
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textButton: {
-    color: secondary,
+    color: aero,
     fontSize: 18,
   },
   button: {
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
   },
   scoreValue: {
     fontSize: 72,
-    backgroundColor: secondary,
+    backgroundColor: moonstone,
     color: white,
     paddingLeft: 30,
     paddingRight: 30,
@@ -245,7 +246,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 10,
-    color: secondary,
+    color: moonstone,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -254,7 +255,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   restartBtn: {
-    backgroundColor: secondary
+    backgroundColor: moonstone
   }
 });
 

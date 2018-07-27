@@ -9,7 +9,7 @@ import {
 
 import { connect } from 'react-redux'
 
-import { white, greyMedium, secondary } from '../utils/colors';
+import { white, greyMedium, secondary, aero, moonstone, indigo, powder, alice } from '../utils/colors';
 
 import { selectDeck, fetchDecks } from '../actions'
 
@@ -39,21 +39,23 @@ class DeckListView extends Component {
         <FlatList
           data={decks}
           keyExtractor={(item, index) => item.title}
-          renderItem={({item}) =>
+          renderItem={({item, index}) =>
 
-            <TouchableOpacity
-              style={styles.listItem}
-              onPress={() => this.selectDeck(item)}
-            >
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.questions}>
-                {item.questions.length}
-                {item.questions.length === 1
-                  ? ' question'
-                  : ' questions'
-                }
-              </Text>
-            </TouchableOpacity>
+            <View style={styles.touchContainer}>
+              <TouchableOpacity
+                style={styles.listItem}
+                onPress={() => this.selectDeck(item)}
+              >
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.questions}>
+                  {item.questions.length}
+                  {item.questions.length === 1
+                    ? ' question'
+                    : ' questions'
+                  }
+                </Text>
+              </TouchableOpacity>
+            </View>
           }
         />
       </View>
@@ -65,22 +67,28 @@ const styles = StyleSheet.create({
   deckListContainer: {
     flex: 1,
     alignItems: 'stretch',
-
+    backgroundColor: '#fff'
+  },
+  touchContainer: {
+    paddingLeft: 15,
+    paddingTop: 15,
+    paddingRight: 15,
+    //backgroundColor: 'red',
   },
   listItem: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 30,
-    borderBottomWidth: 1,
-    borderColor: secondary
+    backgroundColor: moonstone
   },
   title: {
     fontSize: 24,
+    color: white,
   },
   questions: {
     fontSize: 18,
     marginTop: 7,
-    color: greyMedium
+    color: powder
   }
 })
 
