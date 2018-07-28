@@ -68,7 +68,7 @@ const MainNavigator = createStackNavigator({
       headerStyle: {
         backgroundColor: aero,
       },
-      headerTitle: 'Home'
+      headerTitle: 'Decks'
     }
   },
   DeckView: {

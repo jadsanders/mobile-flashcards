@@ -18,6 +18,7 @@ import { getDecks } from '../utils/api'
 
 class DeckListView extends Component {
 
+
   selectDeck(item) {
     this.props.navigation.navigate('DeckView')
     this.props.selectDeck(item)
@@ -36,6 +37,7 @@ class DeckListView extends Component {
 
     return (
       <View style={styles.deckListContainer}>
+
         <FlatList
           data={decks}
           keyExtractor={(item, index) => item.title}
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
   listItem: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 30,
+    padding: 20,
     backgroundColor: moonstone
   },
   title: {

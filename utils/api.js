@@ -15,7 +15,7 @@ const formatDecks = results => {
 }
 
 export function getDecks () {
-  //AsyncStorage.clear()
+  AsyncStorage.clear()
   return AsyncStorage.getItem(STORAGE_KEY)
   .then(formatDecks)
 }
